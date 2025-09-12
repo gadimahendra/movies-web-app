@@ -1,10 +1,11 @@
 import React from 'react'
+import searchIcon from '../assets/search.png';
 
 const Search = ({ search, setSearch }) => {
     return (
         <div className='search'>
             <div>
-                <img src='./search.png' alt="search" />
+                <img src={searchIcon} alt="search" />
                 <input
                     type='text' placeholder='Search here thousands of movies'
                     value={search}

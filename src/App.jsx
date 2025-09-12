@@ -4,6 +4,7 @@ import { Loader } from './components/Loader'
 import MovieCard from './components/MovieCard';
 import { useDebounce } from 'react-use';
 import { updateSeacrchCount, getTrendingMovies } from './appwrite';
+import heroBgIcon from './assets/hero-img.png';
 
 
 const BASE_URL = "https://api.themoviedb.org/3"
@@ -106,7 +107,7 @@ const App = () => {
       <div className='pattern' />
       <div className='wrapper'>
         <header>
-          <img src='./hero-img.png' />
+          <img src={heroBgIcon} />
           <h1> Find <span className='text-gradient'>Moivies</span> You'll Enjoy without the Hassle</h1>
           <Search search={search} setSearch={setSearch} />
         </header>

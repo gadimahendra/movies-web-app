@@ -1,4 +1,5 @@
 import React from 'react'
+import RatingIcon from '../assets/Rating.svg'
 
 const MovieCard = (
     { movie: { title, movie, vote_average, poster_path, release_date, original_language } }
@@ -10,7 +11,7 @@ const MovieCard = (
                 <h3 >{title}</h3>
                 <div className='contnet'>
                     <div className='rating'>
-                        <img src="Rating.svg" alt="star icon" />
+                        <img src={RatingIcon} alt="star icon" />
                         <p>{vote_average ? vote_average.toFixed(1) : 'N/A'}</p>
                         <div className='flex items-center '>
                             <span className='text-white'>&#x2022;</span>
