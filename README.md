@@ -18,7 +18,7 @@ A responsive web application to **browse and filter movies** using TMDB API and 
 
 ## Tech Stack
 
-- **Frontend:** React 19, Vite 7, CSS/SCSS
+- **Frontend:** React 19, Vite 7, CSS/SCSS, Tailwind CSS
 - **Backend / Database:** Appwrite (for tracking search counts)
 - **API:** TMDB (The Movie Database) API
 
