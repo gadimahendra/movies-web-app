@@ -1,12 +1,32 @@
-# React + Vite
+# Movie Web App 🎬
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive web application to **browse and filter movies** using TMDB API and display **trending movies** based on user searches. Built with **React 19** and **Vite 7** for fast performance.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- Fetches movies from **TMDB Movies Database**.
+- Users can **search and filter movies by name**.
+- Displays **trending movies** based on user search activity.
+- Trending data is tracked and stored using **Appwrite**.
+- **Error handling** implemented for API requests.
+- Fully **responsive UI** for desktop and mobile.
+- Fast and optimized with **React 19** + **Vite 7**.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Tech Stack
+
+- **Frontend:** React 19, Vite 7, CSS/SCSS
+- **Backend / Database:** Appwrite (for tracking search counts)
+- **API:** TMDB (The Movie Database) API
+
+---
+
+## Live Demo
+
+<!-- You can see the live application here: [Movie Web App Live](https://your-live-url.vercel.app) -->
+
+---
+
