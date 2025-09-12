@@ -1,6 +1,6 @@
 import React from 'react'
 import RatingIcon from '../assets/Rating.svg'
-import noImage from '../assets/No-poster.png'
+import noImage from '../assets/no-poster.png'
 
 const MovieCard = (
     { movie: { title, movie, vote_average, poster_path, release_date, original_language } }
