@@ -7,7 +7,7 @@ const MovieCard = (
 ) => {
     return (
         <div className='movie-card'>
-            <img src={poster_path ? `https://image.tmdb.org/t/p/w500/${poster_path}` : '/movies-web-app/No-Poster.png'} alt={title} />
+            <img src={poster_path ? `https://image.tmdb.org/t/p/w500/${poster_path}` : `${import.meta.env.VITE_BASE_PATH}No-Poster.png`} alt={title} />
             <div className='mt-4'>
                 <h3 >{title}</h3>
                 <div className='contnet'>
