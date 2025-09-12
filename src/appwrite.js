@@ -1,9 +1,58 @@
+import { Client, Databases, Query, ID } from 'appwrite';
+
 const PROJECT_ID = import.meta.env.VITE_APPWRITE_PROJECT_ID
 const DATABASE_ID = import.meta.env.VITE_APPWRITE_DATABASE_ID
 const COLLECTION_ID = import.meta.env.VITE_APPWRITE_COLLECTION_ID
+const END_POINT = import.meta.env.VITE_APPWRITE_ENDPOINT
+const client = new Client()
+    .setEndpoint(END_POINT)
+    .setProject(PROJECT_ID)
 
 
-export const updateSeacrchCount = async () => {
-    console.log(PROJECT_ID, DATABASE_ID, COLLECTION_ID);
+const database = new Databases(client)
 
+export const updateSeacrchCount = async (search, movie) => {
+
+    // 1.use appwrite sdk to check if the search exists in database
+    try {
+        const result = await database.listDocuments(DATABASE_ID, COLLECTION_ID, [Query.equal("searchTerm", search)])
+
+        //2. if it does update the count
+        if (result.documents.length > 0) {
+            const doc = result.documents[0]
+            await database.updateDocument(DATABASE_ID, COLLECTION_ID, doc.$id, {
+                count: doc.count + 1
+            })
+        } else {
+            await database.createDocument(DATABASE_ID, COLLECTION_ID, ID.unique(), {
+                searchTerm: search,
+                count: 1,
+                movie_id: movie.id,
+                poster_url: `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+            })
+        }
+    } catch (error) {
+        console.error(error)
+    }
+
+    //3 if it doesnt create a new document with search term and count as 1
+
+
+}
+
+export const getTrendingMovies = async () => {
+    try {
+        const res = await database.listDocuments(
+            DATABASE_ID,
+            COLLECTION_ID,
+            [
+                Query.orderDesc("count"),
+                Query.limit(5)
+            ]
+        );
+
+        return res.documents;
+    } catch (error) {
+        console.error('Failed to fetch movies data', error)
+    }
 }
