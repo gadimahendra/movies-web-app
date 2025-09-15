@@ -70,11 +70,10 @@ const App = () => {
       if (quary && data.results.length == 0) {
         console.log('event triggered2', data.results.length);
         setSearchedMovie(true)
-        setErrMsg(`Can't find movies on name ${quary}`)
+        setErrMsg(`Can't find any movies with the name ${quary}`)
       }
 
       if (quary && data.results.length > 0) {
-
         await updateSeacrchCount(quary, data.results[0])
       }
 
