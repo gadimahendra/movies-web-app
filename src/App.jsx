@@ -28,6 +28,8 @@ const App = () => {
 
   const [errMsg, setErrMsg] = useState()
 
+  const [searchedMovie, setSearchedMovie] = useState(false)
+
   const [moviesList, setMovieList] = useState([])
 
   const [loading, setLoading] = useState(false)
@@ -38,6 +40,7 @@ const App = () => {
 
   const getMovies = async (quary) => {
     setLoading(true)
+    setSearchedMovie(false)
     setErrMsg('')
     try {
       const endPoint =
@@ -50,7 +53,11 @@ const App = () => {
         throw new Error('failed to fetch movies')
       }
 
+
+
       const data = await response.json()
+
+
 
       if (data.response === 'False') {
         setErrMsg(data.Error || 'failed to fetch movies')
@@ -60,9 +67,13 @@ const App = () => {
 
       setMovieList(data.results || [])
 
-      console.log('event triggered1', quary, data.results);
+      if (quary && data.results.length == 0) {
+        console.log('event triggered2', data.results.length);
+        setSearchedMovie(true)
+        setErrMsg(`Can't find movies on name ${quary}`)
+      }
+
       if (quary && data.results.length > 0) {
-        console.log('event triggered2');
 
         await updateSeacrchCount(quary, data.results[0])
       }
@@ -109,11 +120,12 @@ const App = () => {
         <header>
           <img src={heroBgIcon} />
           <h1> Find <span className='text-gradient'>Moivies</span> You'll Enjoy without the Hassle</h1>
+
           <Search search={search} setSearch={setSearch} />
         </header>
 
         {
-          trendingMovies.length > 0 && (
+          trendingMovies.length > 0 && search == '' && (
             <section className='trending'>
               <h2>Trending Movies</h2>
 
@@ -136,7 +148,7 @@ const App = () => {
 
           {loading ?
             (<Loader />) :
-            errMsg ?
+            errMsg || moviesList.length == 0 || searchedMovie ?
               (<p className='text-red-500'>{errMsg}</p>) :
               (
                 <ul>
